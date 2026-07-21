@@ -23,9 +23,9 @@ export const LEVELS = [
     topics: [
       { id: "sorting", path: "/sorting", emoji: "📊", title: "Sorting", desc: "Bubble, Selection & Insertion sort" },
       { id: "binary-search", path: "/binary-search", emoji: "🔍", title: "Binary Search", desc: "Eliminate half each step — O(log n)" },
-      { id: "linked-list", path: "/linked-list", emoji: "🔗", title: "Linked List", desc: "Insert, delete, traverse with pointers", soon: true },
-      { id: "recursion", path: "/recursion", emoji: "🔄", title: "Recursion", desc: "Base case, call stack visualization", soon: true },
-      { id: "hashing", path: "/hashing", emoji: "#️⃣", title: "Hashing", desc: "Key → hash → bucket mapping", soon: true },
+      { id: "linked-list", path: "/linked-list", emoji: "🔗", title: "Linked List", desc: "Insert, delete, traverse with pointers" },
+      { id: "recursion", path: "/recursion", emoji: "🔄", title: "Recursion", desc: "Call stack animation, factorial, fibonacci" },
+      { id: "hashing", path: "/hashing", emoji: "#️⃣", title: "Hashing", desc: "Key → hash → bucket mapping" },
     ],
   },
   {
@@ -35,17 +35,17 @@ export const LEVELS = [
     icon: "🔴",
     description: "Unlock after completing Intermediate",
     topics: [
-      { id: "tree", path: "/tree", emoji: "🌲", title: "Binary Tree", desc: "BFS & DFS traversal animated", soon: true },
-      { id: "graph", path: "/graph", emoji: "🌐", title: "Graph", desc: "BFS, DFS, Dijkstra shortest path", soon: true },
-      { id: "heap", path: "/heap", emoji: "🔺", title: "Heap", desc: "Min/Max heap, priority queue", soon: true },
-      { id: "dp", path: "/dp", emoji: "💰", title: "Dynamic Programming", desc: "Memoization, tabulation animated", soon: true },
-      { id: "trie", path: "/trie", emoji: "🌳", title: "Trie", desc: "Prefix tree, autocomplete visualization", soon: true },
+      { id: "tree", path: "/tree", emoji: "🌲", title: "Binary Tree", desc: "BFS & DFS traversal animated" },
+      { id: "graph", path: "/graph", emoji: "🌐", title: "Graph", desc: "BFS, DFS traversal animated" },
+      { id: "heap", path: "/heap", emoji: "🔺", title: "Heap", desc: "Min-heap insert/extract animated" },
+      { id: "dp", path: "/dp", emoji: "💰", title: "Dynamic Programming", desc: "Fibonacci DP table fill" },
+      { id: "trie", path: "/trie", emoji: "🌳", title: "Trie", desc: "Prefix tree insert & search" },
     ],
   },
 ];
 
-const BEGINNER_IDS = LEVELS[0].topics.filter((t) => !t.soon).map((t) => t.id);
-const INTERMEDIATE_IDS = LEVELS[1].topics.filter((t) => !t.soon).map((t) => t.id);
+const BEGINNER_IDS = LEVELS[0].topics.map((t) => t.id);
+const INTERMEDIATE_IDS = LEVELS[1].topics.map((t) => t.id);
 
 const ProgressContext = createContext();
 

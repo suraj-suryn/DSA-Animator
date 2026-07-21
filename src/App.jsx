@@ -8,6 +8,14 @@ import SortingVisualizer from "./visualizers/Sorting/SortingVisualizer";
 import StackVisualizer from "./visualizers/Stack/StackVisualizer";
 import QueueVisualizer from "./visualizers/Queue/QueueVisualizer";
 import BinarySearchVisualizer from "./visualizers/BinarySearch/BinarySearchVisualizer";
+import LinkedListVisualizer from "./visualizers/LinkedList/LinkedListVisualizer";
+import RecursionVisualizer from "./visualizers/Recursion/RecursionVisualizer";
+import HashingVisualizer from "./visualizers/Hashing/HashingVisualizer";
+import BinaryTreeVisualizer from "./visualizers/BinaryTree/BinaryTreeVisualizer";
+import GraphVisualizer from "./visualizers/Graph/GraphVisualizer";
+import HeapVisualizer from "./visualizers/Heap/HeapVisualizer";
+import DPVisualizer from "./visualizers/DP/DPVisualizer";
+import TrieVisualizer from "./visualizers/Trie/TrieVisualizer";
 
 function ComingSoon({ topic }) {
   return (
@@ -34,9 +42,14 @@ export default function App() {
               <Route path="/stack" element={<StackVisualizer />} />
               <Route path="/queue" element={<QueueVisualizer />} />
               <Route path="/binary-search" element={<BinarySearchVisualizer />} />
-              <Route path="/linked-list" element={<ComingSoon topic="Linked List" />} />
-              <Route path="/tree" element={<ComingSoon topic="Binary Tree" />} />
-              <Route path="/graph" element={<ComingSoon topic="Graph" />} />
+              <Route path="/linked-list" element={<LinkedListVisualizer />} />
+              <Route path="/recursion" element={<RecursionVisualizer />} />
+              <Route path="/hashing" element={<HashingVisualizer />} />
+              <Route path="/tree" element={<BinaryTreeVisualizer />} />
+              <Route path="/graph" element={<GraphVisualizer />} />
+              <Route path="/heap" element={<HeapVisualizer />} />
+              <Route path="/dp" element={<DPVisualizer />} />
+              <Route path="/trie" element={<TrieVisualizer />} />
             </Routes>
             </main>
           </div>
