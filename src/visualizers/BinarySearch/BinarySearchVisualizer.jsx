@@ -1,4 +1,68 @@
 import { useState, useRef } from 'react';
+import InfoPanel from '../../components/InfoPanel';
+
+const BS_NOTES = [
+  { type: 'heading', text: 'What is Binary Search?' },
+  { type: 'text', text: 'Binary Search works on SORTED arrays. Instead of checking every element, it eliminates half the search space with each comparison.' },
+  { type: 'bullet', text: '<strong>Requirement:</strong> Array must be sorted' },
+  { type: 'bullet', text: '<strong>Strategy:</strong> Compare target with middle → discard half → repeat' },
+  { type: 'bullet', text: '<strong>Why O(log n)?</strong> Each step halves the problem: n → n/2 → n/4 → 1' },
+  { type: 'heading', text: 'Binary vs Linear Search' },
+  { type: 'bullet', text: '<strong>Linear Search:</strong> O(n) — checks every element, works on unsorted' },
+  { type: 'bullet', text: '<strong>Binary Search:</strong> O(log n) — needs sorted array, exponentially faster' },
+  { type: 'tip', text: 'log₂(1,000,000) ≈ 20. Binary search finds any element in 1 million items in just 20 comparisons!' },
+  { type: 'complexity', items: [
+    { label: 'Best', value: 'O(1)', color: 'text-green-500' },
+    { label: 'Average/Worst', value: 'O(log n)', color: 'text-green-500' },
+    { label: 'Space', value: 'O(1)', color: 'text-green-500' },
+  ]},
+];
+
+const BS_ALGORITHM = [
+  { type: 'heading', text: 'Iterative Binary Search' },
+  { num: 1, text: 'Set <strong>left = 0</strong>, <strong>right = n - 1</strong>' },
+  { num: 2, text: 'While <strong>left ≤ right</strong>: compute <strong>mid = (left + right) / 2</strong>' },
+  { num: 3, text: 'If <strong>arr[mid] == target</strong> → return mid ✅' },
+  { num: 4, text: 'If <strong>arr[mid] < target</strong> → search right: <strong>left = mid + 1</strong>' },
+  { num: 5, text: 'If <strong>arr[mid] > target</strong> → search left: <strong>right = mid - 1</strong>' },
+  { num: 6, text: 'Loop ends → return -1 (not found)' },
+  { type: 'heading', text: 'Common Variations' },
+  { num: 1, text: '<strong>First/last occurrence</strong> — continue searching after finding match' },
+  { num: 2, text: '<strong>Rotated array search</strong> — determine which half is sorted first' },
+  { num: 3, text: '<strong>Find insert position</strong> — return left when loop ends (LeetCode 35)' },
+];
+
+const BS_CODE = `// Iterative Binary Search — O(log n)
+public int binarySearch(int[] arr, int target) {
+    int left = 0, right = arr.length - 1;
+
+    while (left <= right) {
+        // Use this form to avoid integer overflow
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) {
+            return mid;         // Found!
+        } else if (arr[mid] < target) {
+            left = mid + 1;     // Search right half
+        } else {
+            right = mid - 1;    // Search left half
+        }
+    }
+    return -1;  // Not found
+}
+
+// Recursive Binary Search — O(log n) time, O(log n) space
+public int binarySearchRec(int[] arr, int target, int left, int right) {
+    if (left > right) return -1;
+    int mid = left + (right - left) / 2;
+    if (arr[mid] == target) return mid;
+    if (arr[mid] < target) return binarySearchRec(arr, target, mid + 1, right);
+    return binarySearchRec(arr, target, left, mid - 1);
+}
+
+// Java built-in
+int[] sorted = {3, 7, 12, 19, 25, 33};
+int idx = Arrays.binarySearch(sorted, 19);  // returns 3`;
 
 const INITIAL = [3, 7, 12, 19, 25, 33, 44, 56, 68, 75];
 
@@ -157,16 +221,7 @@ export default function BinarySearchVisualizer() {
         </div>
       )}
 
-      {/* Concept box */}
-      <div className="bg-gray-50 dark:bg-gray-900 border dark:border-gray-700 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
-        <p className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Key Concepts</p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li><strong>Requirement:</strong> Array must be sorted</li>
-          <li><strong>Strategy:</strong> Check middle → eliminate half → repeat</li>
-          <li><strong>Time:</strong> O(log n) — 10 steps finds in 1024 elements!</li>
-          <li><strong>vs Linear Search:</strong> Binary is exponentially faster on large sorted arrays</li>
-        </ul>
-      </div>
+      <InfoPanel notes={BS_NOTES} algorithm={BS_ALGORITHM} code={BS_CODE} />
     </div>
   );
 }

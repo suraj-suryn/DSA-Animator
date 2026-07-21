@@ -1,4 +1,79 @@
 import { useState, useRef } from 'react';
+import InfoPanel from '../../components/InfoPanel';
+
+const QUEUE_NOTES = [
+  { type: 'heading', text: 'What is a Queue?' },
+  { type: 'text', text: 'A queue follows FIFO — First In, First Out. Think of a ticket line: the first person to join is the first to be served.' },
+  { type: 'bullet', text: '<strong>Enqueue:</strong> Add to the back (rear) — O(1)' },
+  { type: 'bullet', text: '<strong>Dequeue:</strong> Remove from the front — O(1)' },
+  { type: 'bullet', text: '<strong>Peek:</strong> View front element without removing — O(1)' },
+  { type: 'heading', text: 'Queue vs Stack' },
+  { type: 'bullet', text: '<strong>Stack (LIFO):</strong> Last in, first out — like a stack of plates' },
+  { type: 'bullet', text: '<strong>Queue (FIFO):</strong> First in, first out — like a ticket line' },
+  { type: 'heading', text: 'Real World Uses' },
+  { type: 'bullet', text: '<strong>CPU task scheduling</strong> — OS processes tasks in queue order' },
+  { type: 'bullet', text: '<strong>Print queue</strong> — documents print in order submitted' },
+  { type: 'bullet', text: '<strong>BFS traversal</strong> — graphs use queue to visit nodes level by level' },
+  { type: 'tip', text: 'Remember: BFS always uses a Queue. DFS uses a Stack. This is critical for graph problems!' },
+  { type: 'complexity', items: [
+    { label: 'Enqueue', value: 'O(1)', color: 'text-green-500' },
+    { label: 'Dequeue', value: 'O(1)', color: 'text-green-500' },
+    { label: 'Space', value: 'O(n)', color: 'text-yellow-500' },
+  ]},
+];
+
+const QUEUE_ALGORITHM = [
+  { type: 'heading', text: 'Enqueue (Add to Back)' },
+  { num: 1, text: 'Check if queue is <strong>full</strong>' },
+  { num: 2, text: 'Place element at <strong>rear</strong> position' },
+  { num: 3, text: 'Increment <strong>rear pointer</strong>' },
+  { type: 'heading', text: 'Dequeue (Remove from Front)' },
+  { num: 1, text: 'Check if queue is <strong>empty</strong>' },
+  { num: 2, text: 'Retrieve element at <strong>front</strong>' },
+  { num: 3, text: 'Increment <strong>front pointer</strong>' },
+  { num: 4, text: 'Return the retrieved value' },
+  { type: 'heading', text: 'BFS using Queue (Classic)' },
+  { num: 1, text: 'Enqueue the <strong>starting node</strong>, mark visited' },
+  { num: 2, text: 'While queue not empty: <strong>dequeue a node</strong>' },
+  { num: 3, text: 'Process it, enqueue all <strong>unvisited neighbors</strong>' },
+  { num: 4, text: 'Mark each neighbor visited before enqueuing' },
+];
+
+const QUEUE_CODE = `// Queue using Java built-in
+import java.util.LinkedList;
+import java.util.Queue;
+
+Queue<Integer> queue = new LinkedList<>();
+
+queue.offer(10);  // Enqueue — O(1)
+queue.offer(20);
+queue.offer(30);
+
+int front = queue.peek();  // 10 — view without remove
+int val = queue.poll();    // 10 — remove from front
+
+if (queue.isEmpty()) System.out.println("Empty");
+
+// BFS using Queue — O(V + E)
+public void bfs(int start, List<List<Integer>> graph) {
+    Queue<Integer> queue = new LinkedList<>();
+    boolean[] visited = new boolean[graph.size()];
+
+    queue.offer(start);
+    visited[start] = true;
+
+    while (!queue.isEmpty()) {
+        int node = queue.poll();
+        System.out.print(node + " ");
+
+        for (int neighbor : graph.get(node)) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                queue.offer(neighbor);
+            }
+        }
+    }
+}`;
 
 const MAX = 7;
 
@@ -182,17 +257,7 @@ export default function QueueVisualizer() {
         </button>
       </div>
 
-      {/* Concept box */}
-      <div className="mt-6 bg-gray-50 dark:bg-gray-900 border dark:border-gray-700 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
-        <p className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Key Concepts</p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li><strong>Enqueue:</strong> Add to back — O(1)</li>
-          <li><strong>Dequeue:</strong> Remove from front — O(1)</li>
-          <li><strong>Peek:</strong> View front element — O(1)</li>
-          <li><strong>Use cases:</strong> Print queue, CPU scheduling, BFS graph traversal</li>
-          <li><strong>vs Stack:</strong> Stack = LIFO (last plate), Queue = FIFO (ticket line)</li>
-        </ul>
-      </div>
+      <InfoPanel notes={QUEUE_NOTES} algorithm={QUEUE_ALGORITHM} code={QUEUE_CODE} />
     </div>
   );
 }

@@ -1,4 +1,71 @@
 import { useState, useRef } from 'react';
+import InfoPanel from '../../components/InfoPanel';
+
+const STACK_NOTES = [
+  { type: 'heading', text: 'What is a Stack?' },
+  { type: 'text', text: 'A stack follows LIFO — Last In, First Out. Think of a stack of plates: you can only add or remove from the top.' },
+  { type: 'bullet', text: '<strong>Push:</strong> Add element to top — O(1)' },
+  { type: 'bullet', text: '<strong>Pop:</strong> Remove element from top — O(1)' },
+  { type: 'bullet', text: '<strong>Peek:</strong> View top without removing — O(1)' },
+  { type: 'heading', text: 'Real World Uses' },
+  { type: 'bullet', text: '<strong>Function call stack</strong> — every method call pushes a frame; return pops it' },
+  { type: 'bullet', text: '<strong>Undo / Redo</strong> — text editors use a stack for history' },
+  { type: 'bullet', text: '<strong>Browser back button</strong> — visited pages stored in a stack' },
+  { type: 'bullet', text: '<strong>Balanced parentheses</strong> — classic interview problem using stack' },
+  { type: 'tip', text: '"Stack Overflow" error = the call stack grew too deep, usually from infinite recursion!' },
+  { type: 'complexity', items: [
+    { label: 'Push', value: 'O(1)', color: 'text-green-500' },
+    { label: 'Pop', value: 'O(1)', color: 'text-green-500' },
+    { label: 'Space', value: 'O(n)', color: 'text-yellow-500' },
+  ]},
+];
+
+const STACK_ALGORITHM = [
+  { type: 'heading', text: 'Push Operation' },
+  { num: 1, text: 'Check if stack is <strong>full</strong> (stack overflow)' },
+  { num: 2, text: 'Increment top pointer: <strong>top++</strong>' },
+  { num: 3, text: 'Store element: <strong>stack[top] = value</strong>' },
+  { type: 'heading', text: 'Pop Operation' },
+  { num: 1, text: 'Check if stack is <strong>empty</strong> (stack underflow)' },
+  { num: 2, text: 'Retrieve: <strong>value = stack[top]</strong>' },
+  { num: 3, text: 'Decrement: <strong>top--</strong>' },
+  { num: 4, text: 'Return the retrieved value' },
+  { type: 'heading', text: 'Balanced Parentheses (Classic)' },
+  { num: 1, text: 'If opening bracket → <strong>push</strong> onto stack' },
+  { num: 2, text: 'If closing bracket → <strong>pop</strong> and check it matches' },
+  { num: 3, text: 'If stack is empty at end → <strong>balanced ✅</strong>' },
+];
+
+const STACK_CODE = `// Stack using Java built-in
+import java.util.Stack;
+
+Stack<Integer> stack = new Stack<>();
+
+stack.push(10);   // Push — O(1)
+stack.push(20);
+stack.push(30);
+
+int top = stack.peek();  // 30 — view without remove
+int val = stack.pop();   // 30 — remove from top
+
+if (stack.isEmpty()) System.out.println("Empty");
+
+// Classic: Balanced Parentheses — O(n)
+public boolean isBalanced(String s) {
+    Stack<Character> stack = new Stack<>();
+    for (char c : s.toCharArray()) {
+        if (c == '(' || c == '{' || c == '[') {
+            stack.push(c);
+        } else {
+            if (stack.isEmpty()) return false;
+            char top = stack.pop();
+            if ((c==')' && top!='(') ||
+                (c=='}' && top!='{') ||
+                (c==']' && top!='[')) return false;
+        }
+    }
+    return stack.isEmpty();
+}`;
 
 const MAX = 8;
 
@@ -177,17 +244,8 @@ export default function StackVisualizer() {
         </button>
       </div>
 
-      {/* Concept box */}
-      <div className="mt-6 bg-gray-50 dark:bg-gray-900 border dark:border-gray-700 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
-        <p className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Key Concepts</p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li><strong>Push:</strong> Add element to top — O(1)</li>
-          <li><strong>Pop:</strong> Remove element from top — O(1)</li>
-          <li><strong>Peek:</strong> View top element without removing — O(1)</li>
-          <li><strong>Stack Overflow:</strong> Push to a full stack</li>
-          <li><strong>Use cases:</strong> Undo/redo, function call stack, browser back button</li>
-        </ul>
-      </div>
+      {/* Concept box replaced by InfoPanel */}
+      <InfoPanel notes={STACK_NOTES} algorithm={STACK_ALGORITHM} code={STACK_CODE} />
     </div>
   );
 }

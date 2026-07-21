@@ -1,4 +1,75 @@
 import { useState, useRef } from 'react';
+import InfoPanel from '../../components/InfoPanel';
+
+const SORT_NOTES = [
+  { type: 'heading', text: 'What is Sorting?' },
+  { type: 'text', text: 'Sorting arranges elements in order. Choosing the right algorithm depends on data size, memory, and whether stability matters.' },
+  { type: 'bullet', text: '<strong>Bubble Sort:</strong> Swaps adjacent elements if out of order. Simple but slow — O(n²)' },
+  { type: 'bullet', text: '<strong>Selection Sort:</strong> Finds minimum each pass, places it at front — O(n²)' },
+  { type: 'bullet', text: '<strong>Insertion Sort:</strong> Builds sorted portion one element at a time — best for nearly-sorted data' },
+  { type: 'heading', text: 'Key Terms' },
+  { type: 'bullet', text: '<strong>Stable sort:</strong> Preserves original order of equal elements (Insertion Sort is stable)' },
+  { type: 'bullet', text: '<strong>In-place:</strong> Sorts without extra memory — all three below are in-place O(1) space' },
+  { type: 'tip', text: 'For interviews: know Merge Sort O(n log n) and Quick Sort. These three are foundational building blocks.' },
+  { type: 'complexity', items: [
+    { label: 'Bubble/Select', value: 'O(n²)', color: 'text-red-500' },
+    { label: 'Insertion Best', value: 'O(n)', color: 'text-green-500' },
+    { label: 'Space All', value: 'O(1)', color: 'text-green-500' },
+  ]},
+];
+
+const SORT_ALGORITHM = [
+  { type: 'heading', text: 'Bubble Sort' },
+  { num: 1, text: 'For each pass i from 0 to n-1' },
+  { num: 2, text: 'Compare adjacent pairs <strong>arr[j]</strong> and <strong>arr[j+1]</strong>' },
+  { num: 3, text: 'If arr[j] > arr[j+1] → <strong>swap</strong> them' },
+  { num: 4, text: 'After each full pass, largest element <strong>bubbles to its final position</strong>' },
+  { num: 5, text: 'Repeat n-1 times total' },
+  { type: 'heading', text: 'Selection Sort' },
+  { num: 1, text: 'Find the <strong>minimum element</strong> in the unsorted portion' },
+  { num: 2, text: 'Swap it with the first unsorted position' },
+  { num: 3, text: 'Advance the sorted boundary and repeat' },
+  { type: 'heading', text: 'Insertion Sort' },
+  { num: 1, text: 'Pick next unsorted element as <strong>key</strong>' },
+  { num: 2, text: 'Shift all sorted elements larger than key one position <strong>right</strong>' },
+  { num: 3, text: '<strong>Insert key</strong> into its correct position' },
+];
+
+const SORT_CODE = `// Bubble Sort — O(n²) time, O(1) space
+public void bubbleSort(int[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Selection Sort — O(n²) time, O(1) space
+public void selectionSort(int[] arr) {
+    for (int i = 0; i < arr.length - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[minIdx]) minIdx = j;
+        }
+        int temp = arr[minIdx]; arr[minIdx] = arr[i]; arr[i] = temp;
+    }
+}
+
+// Insertion Sort — O(n²) worst, O(n) best (nearly sorted)
+public void insertionSort(int[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+        int key = arr[i], j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j]; j--;
+        }
+        arr[j + 1] = key;
+    }
+}`;
 
 const INITIAL = [64, 34, 25, 12, 22, 11, 90];
 
@@ -211,6 +282,8 @@ export default function SortingVisualizer() {
           </tbody>
         </table>
       </div>
+
+      <InfoPanel notes={SORT_NOTES} algorithm={SORT_ALGORITHM} code={SORT_CODE} />
     </div>
   );
 }
