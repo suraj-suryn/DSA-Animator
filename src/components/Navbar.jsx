@@ -5,6 +5,8 @@ const topics = [
   { path: '/array', label: '📦 Arrays' },
   { path: '/sorting', label: '📊 Sorting' },
   { path: '/stack', label: '🥞 Stack' },
+  { path: '/queue', label: '🚶 Queue' },
+  { path: '/binary-search', label: '🔍 Binary Search' },
   { path: '/linked-list', label: '🔗 Linked List' },
 ];
 

@@ -4,6 +4,9 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import ArrayVisualizer from "./visualizers/Array/ArrayVisualizer";
 import SortingVisualizer from "./visualizers/Sorting/SortingVisualizer";
+import StackVisualizer from "./visualizers/Stack/StackVisualizer";
+import QueueVisualizer from "./visualizers/Queue/QueueVisualizer";
+import BinarySearchVisualizer from "./visualizers/BinarySearch/BinarySearchVisualizer";
 
 function ComingSoon({ topic }) {
   return (
@@ -26,8 +29,12 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/array" element={<ArrayVisualizer />} />
               <Route path="/sorting" element={<SortingVisualizer />} />
-              <Route path="/stack" element={<ComingSoon topic="Stack" />} />
+              <Route path="/stack" element={<StackVisualizer />} />
+              <Route path="/queue" element={<QueueVisualizer />} />
+              <Route path="/binary-search" element={<BinarySearchVisualizer />} />
               <Route path="/linked-list" element={<ComingSoon topic="Linked List" />} />
+              <Route path="/tree" element={<ComingSoon topic="Binary Tree" />} />
+              <Route path="/graph" element={<ComingSoon topic="Graph" />} />
             </Routes>
           </main>
         </div>
