@@ -119,8 +119,8 @@ export default function ArrayVisualizer() {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-indigo-700 mb-1">Array Visualizer</h2>
-      <p className="text-gray-500 text-sm mb-6">Step-by-step animation of common array operations</p>
+      <h2 className="text-2xl font-bold text-indigo-700 dark:text-indigo-400 mb-1">Array Visualizer</h2>
+      <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">Step-by-step animation of common array operations</p>
 
       {/* Array display */}
       <div className="flex flex-wrap gap-3 justify-center mb-6">
@@ -129,13 +129,13 @@ export default function ArrayVisualizer() {
             <div className={`w-14 h-14 flex items-center justify-center rounded-lg font-bold text-lg transition-all duration-300 ${getBoxColor(i)}`}>
               {val}
             </div>
-            <span className="text-xs text-gray-400 mt-1">[{i}]</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500 mt-1">[{i}]</span>
           </div>
         ))}
       </div>
 
       {/* Message */}
-      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3 mb-6 text-center text-indigo-800 font-medium text-sm min-h-10">
+      <div className="bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 rounded-lg p-3 mb-6 text-center text-indigo-800 dark:text-indigo-300 font-medium text-sm min-h-10">
         {message}
       </div>
 
@@ -146,14 +146,14 @@ export default function ArrayVisualizer() {
           placeholder="Value"
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-28 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg px-3 py-2 text-sm w-28 focus:outline-none focus:ring-2 focus:ring-indigo-400"
         />
         <input
           type="number"
           placeholder="Index"
           value={inputIdx}
           onChange={(e) => setInputIdx(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-28 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg px-3 py-2 text-sm w-28 focus:outline-none focus:ring-2 focus:ring-indigo-400"
         />
       </div>
 
@@ -176,14 +176,14 @@ export default function ArrayVisualizer() {
           🗑️ Delete at Index
         </button>
         <button onClick={reset}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-300">
+          className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg text-sm font-medium hover:bg-gray-300 dark:hover:bg-gray-600">
           ↺ Reset
         </button>
       </div>
 
       {/* Concept box */}
-      <div className="mt-8 bg-gray-50 border rounded-lg p-4 text-sm text-gray-700">
-        <p className="font-semibold mb-2 text-gray-800">Key Concepts</p>
+      <div className="mt-8 bg-gray-50 dark:bg-gray-900 border dark:border-gray-700 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
+        <p className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Key Concepts</p>
         <ul className="list-disc pl-5 space-y-1">
           <li><strong>Linear Search:</strong> Check each element one by one — O(n)</li>
           <li><strong>Two Pointer:</strong> Use two indices moving toward each other — O(n) after sort</li>

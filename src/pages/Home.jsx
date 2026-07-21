@@ -39,19 +39,19 @@ const topics = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-gray-950 dark:to-gray-900 transition-colors duration-300">
       {/* Hero */}
       <div className="text-center py-16 px-6">
-        <h1 className="text-4xl font-extrabold text-indigo-800 mb-3">
+        <h1 className="text-4xl font-extrabold text-indigo-800 dark:text-indigo-300 mb-3">
           Learn DSA Visually — Free Forever
         </h1>
-        <p className="text-gray-500 text-lg max-w-xl mx-auto mb-8">
+        <p className="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto mb-8">
           Step-by-step animated visualizations of Data Structures & Algorithms.
           Built for students, by developers.
         </p>
         <Link
           to="/array"
-          className="inline-block bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg"
+          className="inline-block bg-indigo-600 dark:bg-indigo-500 text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors shadow-lg"
         >
           Start Learning →
         </Link>
@@ -79,7 +79,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <div className="text-center pb-8 text-gray-400 text-sm">
+      <div className="text-center pb-8 text-gray-400 dark:text-gray-600 text-sm">
         100% Free • No Login Required • Open Source
       </div>
     </div>
