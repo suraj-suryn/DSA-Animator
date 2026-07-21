@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import InfoPanel from '../../components/InfoPanel';
+import CompletionButton from '../../components/CompletionButton';
 
 const SORT_NOTES = [
   { type: 'heading', text: 'What is Sorting?' },
@@ -284,6 +285,7 @@ export default function SortingVisualizer() {
       </div>
 
       <InfoPanel notes={SORT_NOTES} algorithm={SORT_ALGORITHM} code={SORT_CODE} />
+      <CompletionButton topicId="sorting" />
     </div>
   );
 }

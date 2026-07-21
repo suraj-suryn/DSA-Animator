@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import { ProgressProvider } from "./context/ProgressContext";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import ArrayVisualizer from "./visualizers/Array/ArrayVisualizer";
@@ -21,11 +22,12 @@ function ComingSoon({ topic }) {
 export default function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter basename="/DSA-Animator">
-        <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-          <Navbar />
-          <main>
-            <Routes>
+      <ProgressProvider>
+        <BrowserRouter basename="/DSA-Animator">
+          <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+            <Navbar />
+            <main>
+              <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/array" element={<ArrayVisualizer />} />
               <Route path="/sorting" element={<SortingVisualizer />} />
@@ -36,9 +38,10 @@ export default function App() {
               <Route path="/tree" element={<ComingSoon topic="Binary Tree" />} />
               <Route path="/graph" element={<ComingSoon topic="Graph" />} />
             </Routes>
-          </main>
-        </div>
-      </BrowserRouter>
+            </main>
+          </div>
+        </BrowserRouter>
+      </ProgressProvider>
     </ThemeProvider>
   );
 }

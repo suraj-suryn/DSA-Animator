@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import InfoPanel from '../../components/InfoPanel';
+import CompletionButton from '../../components/CompletionButton';
 
 const STACK_NOTES = [
   { type: 'heading', text: 'What is a Stack?' },
@@ -246,6 +247,7 @@ export default function StackVisualizer() {
 
       {/* Concept box replaced by InfoPanel */}
       <InfoPanel notes={STACK_NOTES} algorithm={STACK_ALGORITHM} code={STACK_CODE} />
+      <CompletionButton topicId="stack" />
     </div>
   );
 }

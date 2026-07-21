@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import InfoPanel from '../../components/InfoPanel';
+import CompletionButton from '../../components/CompletionButton';
 
 const ARRAY_NOTES = [
   { type: 'heading', text: 'What is an Array?' },
@@ -255,6 +256,7 @@ export default function ArrayVisualizer() {
 
       {/* Concept box replaced by InfoPanel */}
       <InfoPanel notes={ARRAY_NOTES} algorithm={ARRAY_ALGORITHM} code={ARRAY_CODE} />
+      <CompletionButton topicId="array" />
     </div>
   );
 }

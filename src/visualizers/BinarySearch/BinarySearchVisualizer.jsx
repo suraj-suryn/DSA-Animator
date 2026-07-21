@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import InfoPanel from '../../components/InfoPanel';
+import CompletionButton from '../../components/CompletionButton';
 
 const BS_NOTES = [
   { type: 'heading', text: 'What is Binary Search?' },
@@ -222,6 +223,7 @@ export default function BinarySearchVisualizer() {
       )}
 
       <InfoPanel notes={BS_NOTES} algorithm={BS_ALGORITHM} code={BS_CODE} />
+      <CompletionButton topicId="binary-search" />
     </div>
   );
 }

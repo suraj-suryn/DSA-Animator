@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import InfoPanel from '../../components/InfoPanel';
+import CompletionButton from '../../components/CompletionButton';
 
 const QUEUE_NOTES = [
   { type: 'heading', text: 'What is a Queue?' },
@@ -258,6 +259,7 @@ export default function QueueVisualizer() {
       </div>
 
       <InfoPanel notes={QUEUE_NOTES} algorithm={QUEUE_ALGORITHM} code={QUEUE_CODE} />
+      <CompletionButton topicId="queue" />
     </div>
   );
 }
